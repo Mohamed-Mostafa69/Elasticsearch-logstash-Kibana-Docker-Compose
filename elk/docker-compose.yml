@@ -1,0 +1,17 @@
+services:
+  elk:
+    image: sebp/elk
+    environment:
+      DEBUG=ES_HEAP_SIZE: "2g"
+      LS_HEAP_SIZE: "1g"
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+
+  filebeat:
+    build: ./home/devops-mohammedmostafa-01/elk/elk-docker/nginx-filebeat
+    ports:
+      - "80:80"
+    links:
+      - elk
